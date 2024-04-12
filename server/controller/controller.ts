@@ -1,6 +1,5 @@
 import express,{ Request, Response } from 'express';
 import ToDo from '../models/schema';
-
 const getTodo =  async(req: Request, res: Response) => {
   try {
     const todos = await ToDo.find({});
@@ -8,7 +7,6 @@ const getTodo =  async(req: Request, res: Response) => {
   } catch (err) {
     console.error('Error fetching todos:', err);
   }  
-
 }
 
 const saveTodo = (req: Request, res: Response) => {

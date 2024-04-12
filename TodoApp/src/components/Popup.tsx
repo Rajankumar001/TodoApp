@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../App.css'
 import {RxCross1} from 'react-icons/rx';
 import { baseURL } from '../utils/constant';
 const Popup = ({setShowpopup,popupcontent,setUpdateUI}):any => {
