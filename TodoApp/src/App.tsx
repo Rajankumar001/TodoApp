@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './App.css'
 import Todolist from "./components/Todolist";
 import { baseURL } from "./utils/constant";
+import Popup from "./components/Popup";
 import axios from 'axios';
 
 
@@ -9,12 +10,16 @@ function App() {
   interface TodoItem {
     _id: string;
     toDo: string;
+    setPopupcontent:React.Dispatch<React.SetStateAction<string>>
+    setShowpopup:React.Dispatch<React.SetStateAction<boolean>>;
     setUpdateUI: React.Dispatch<React.SetStateAction<boolean>>;
   }
  
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [input, setInput] = useState<string>("");
   const [updateUI,setUpdateUI]=useState(false);
+  const [showpopup,setShowpopup]=useState(false);
+  const [popupcontent,setPopupcontent]=useState({})
 
   useEffect(() => {
     axios.get(`${baseURL}/home`)
@@ -54,11 +59,17 @@ function App() {
         <button onClick={saveTodo}>Add</button>
       </div>
       <div className="Todolist">
-       {Array.isArray(todos) && todos.map((el)=><Todolist key={el._id} text={el.toDo} id={el._id} setUpdateUI={setUpdateUI}/>)} 
+       {Array.isArray(todos) && todos.map((el)=><Todolist key={el._id} 
+       text={el.toDo} id={el._id} setUpdateUI={setUpdateUI}
+        setShowpopup={setShowpopup}
+        setPopupcontent={setPopupcontent}
+       />)} 
         
       </div>
       </div>
-     
+     {showpopup &&<Popup  setShowpopup={setShowpopup}
+     popupcontent={popupcontent}
+     setUpdateUI={setUpdateUI}/>}
     </main>
   );
 }

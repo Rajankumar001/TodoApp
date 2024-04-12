@@ -6,10 +6,12 @@ import { baseURL } from '../utils/constant';
 import axios from 'axios';
 interface TodoProps {
   id:string,
-  text: string; // Specify the type of 'text' as string
+  text: string; 
+  setPopupcontent:React.Dispatch<React.SetStateAction<any>>
+  setShowpopup: React.Dispatch<React.SetStateAction<boolean>>;// Specify the type of 'text' as string
   setUpdateUI: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const  Todolist: React.FC<TodoProps> = ({ text,id,setUpdateUI}) => {
+const  Todolist: React.FC<TodoProps> = ({ text,id,setUpdateUI,setShowpopup,setPopupcontent}) => {
   const Tododelete=()=>{
     axios.delete(`${baseURL}/delete/${id}` )
         .then((res) => {
@@ -20,11 +22,16 @@ const  Todolist: React.FC<TodoProps> = ({ text,id,setUpdateUI}) => {
           console.error("Error while saving todo:", err);
         });
   }
+  const updateTodo=()=>{
+    setPopupcontent({text,id})
+    console.log("item clicked");
+    setShowpopup(true)
+  }
   return (
     <div className='list'>
     {text}
       <div className="icons">
-        <CiEdit className='icon'/>
+        <CiEdit className='icon' onClick={updateTodo}/>
         <MdOutlineDangerous className='icon' onClick={Tododelete}/>
       </div>
     </div>
