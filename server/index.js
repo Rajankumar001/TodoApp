@@ -4,7 +4,7 @@ var express_1 = require("express");
 var mongoose_1 = require("mongoose");
 var cors_1 = require("cors");
 var Todoroutes_1 = require("./routes/Todoroutes");
-var app = (0, express_1());
+var app = (0, express_1)();
 app.use((0, cors_1)({
     origin: "http://localhost:5173"
 }));

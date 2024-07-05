@@ -1,4 +1,4 @@
-import express,{Request,Response} from 'express';
+import express , {Request,Response} from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -10,15 +10,11 @@ app.use(cors(
     origin:"http://localhost:5173"
   }
 ));
-
 const PORT=3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', router);
-
 // middleware
-
-
 app.listen(PORT,():void=>{
     console.log(`app is listening on ${PORT}`);
 });
