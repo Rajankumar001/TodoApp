@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error:no test specified\" && exit 1",
-    "start":"node /opt/render/project/src/index.js"
+    "start":"node dist/index.js"
   },
   "keywords": [],
   "author": "",
