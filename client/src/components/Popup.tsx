@@ -3,7 +3,13 @@ import axios from 'axios';
 import '../App.css'
 import {RxCross1} from 'react-icons/rx';
 import { baseURL } from '../utils/constant';
-const Popup = ({setShowpopup,popupcontent,setUpdateUI}):any => {
+interface PopupProps {
+  setShowpopup: React.Dispatch<React.SetStateAction<boolean>>;
+  popupcontent: { id: string; text: string };
+  setUpdateUI: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Popup:React.FC<PopupProps>  = ({setShowpopup,popupcontent,setUpdateUI})=> {
     const [input,setInput]=useState(popupcontent.text);
     const updatetodo=()=>{
     axios.put(`${baseURL}/update/${popupcontent.id}`,{toDo:input}).then((res)=>{
